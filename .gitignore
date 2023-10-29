@@ -1,3 +1,6 @@
+# Load program file
+extract-pnr
+
 # Prerequisites
 *.d
 
