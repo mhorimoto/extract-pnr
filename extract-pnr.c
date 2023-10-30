@@ -6,7 +6,7 @@
   between the previous and current rows.
 
   Author: horimoto@holly-linux.com
-  Date:   29th Oct 2023
+  Date:   30th Oct 2023
 */
 
 #include <stdlib.h>
@@ -14,11 +14,11 @@
 #include <unistd.h>
 #include <string.h>
 
-char *version = "extract-pnr Version 1.00";
+char *version = "extract-pnr Version 1.10";
 
 int main(int argc,char *argv[]) {
 
-  char lb[BUFSIZ],blb[BUFSIZ],*lbp;
+  char lb[BUFSIZ],blb[BUFSIZ],plb[BUFSIZ],*lbp;
   char prow[20],crow[20],*cindx;
   char *optt = NULL;
   char *optc = NULL;
@@ -64,8 +64,12 @@ int main(int argc,char *argv[]) {
     strncpy(crow,cindx,20);
     if (optdbg) fprintf(stderr,"%s : %s\n",crow,prow);
     if (strncmp(crow,prow,20)) {
+      if (strncmp(plb,blb,BUFSIZ-1)) {
+	printf("%s",plb);
+      }
       printf("%s",blb);
     }
+    strncpy(plb,blb,BUFSIZ-1);
     strncpy(prow,crow,20);
   }
 }
